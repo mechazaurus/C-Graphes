@@ -36,8 +36,7 @@ string CException::EXCgetMessage() {
 	return sEXCMessage;
 }
 
-void CException::EXCDisplay()
-{
-	cout << "Exception levee type : " << EXCgetValue() << " -> " << EXCgetMessage();
-	getchar();
+void CException::EXCDisplay() {
+
+	cout << "Exception " << EXCgetValue() << " levee : " << EXCgetMessage() << endl;
 }
