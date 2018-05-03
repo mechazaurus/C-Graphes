@@ -32,9 +32,9 @@ public :
 	*********************************/
 	~CArc() {}
 
-	/****************************************
-	*** Get the arc destination          ***
-	*** R : The value of the destiantion ***
+	/***************************************
+	*** Get the arc's destination        ***
+	*** R : The value of the destination ***
 	***************************************/
 	unsigned int ARCgetVertexNumber();
 };

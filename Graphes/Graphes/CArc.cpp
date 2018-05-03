@@ -13,7 +13,7 @@ CArc :: CArc() {
  *** Copy constructor ***
  ***********************/
 CArc :: CArc(CArc &ARCParam) {
-	uiARCVertexNumber = ARCParam.ARCgetVertexNumber();
+	uiARCVertexNumber = ARCParam.uiARCVertexNumber;
 }
 
 /*******************************************************
