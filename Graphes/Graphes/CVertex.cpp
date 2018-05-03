@@ -7,7 +7,6 @@
 *** Can't be used by users           ***
 ***************************************/
 CVertex :: CVertex() {
-
 	uiVERNumber = 0;
 }
 
@@ -15,7 +14,6 @@ CVertex :: CVertex() {
 *** Copy constructor ***
 ***********************/
 CVertex :: CVertex(CVertex &VERParam) {
-
 	uiVERNumber = VERParam.uiVERNumber;
 	vVERIncomingArcs = VERParam.vVERIncomingArcs;
 	vVEROutcomingArcs = VERParam.vVEROutcomingArcs;
@@ -25,12 +23,28 @@ CVertex :: CVertex(CVertex &VERParam) {
 *** E : uiParam the value                   ***
 **********************************************/
 CVertex :: CVertex(unsigned int uiParam) {
-
 	uiVERNumber = uiParam;
 }
 
-unsigned int CVertex :: VERgetVertexNumber() {
+/*********************************
+*** Destructor - Free the arcs ***
+*********************************/
+CVertex :: ~CVertex() {
+	
+	for (unsigned int uiLoop = 0 ; uiLoop < vVERIncomingArcs.size() ; uiLoop++) {
+		delete(vVERIncomingArcs[uiLoop]);
+	}
 
+	for (unsigned int uiLoop = 0; uiLoop < vVEROutcomingArcs.size(); uiLoop++) {
+		delete(vVEROutcomingArcs[uiLoop]);
+	}
+}
+
+/*******************************
+ *** Get the vertex's number ***
+ *** R: the vertex's number  ***
+ ******************************/
+unsigned int CVertex :: VERgetVertexNumber() {
 	return uiVERNumber;
 }
 
@@ -38,7 +52,7 @@ unsigned int CVertex :: VERgetVertexNumber() {
 
 // Manipulations of incoming arcs
 
-/************************************************
+/***********************************************
 *** Get the size of the incoming arcs vector ***
 *** R : the size of the vector               ***
 ***********************************************/
@@ -98,6 +112,8 @@ void CVertex :: VERdeleteIncomingArc(CArc *ARCParam) {
 	else {
 		vVERIncomingArcs.swap(vTemp);
 	}
+
+	free(ARCParam);
 }
 
 
@@ -163,11 +179,17 @@ void CVertex::VERdeleteOutcomingArc(CArc *ARCParam) {
 	} else {
 		vVEROutcomingArcs.swap(vTemp);
 	}
+
+	free(ARCParam);
 }
 
 
 
 // Other methods
+
+/*******************************************************
+*** Display the vertex's incoming and outcoming arcs ***
+*******************************************************/
 void CVertex :: VERdisplayVertex() {
 
 	cout << "Sommet numero " << uiVERNumber << endl;

@@ -40,14 +40,14 @@ public :
 	CVertex(unsigned int uiParam);
 
 	/*********************************
-	*** Destructor - Nothing to do ***
+	*** Destructor - Free the arcs ***
 	*********************************/
-	~CVertex() {}
+	~CVertex();
 
-	/***************************************
-	*** Get the vertex's number          ***
-	*** R : The vertex's number          ***
-	***************************************/
+	/******************************
+	*** Get the vertex's number ***
+	*** R: the vertex's number  ***
+	******************************/
 	unsigned int VERgetVertexNumber();
 
 
@@ -109,6 +109,10 @@ public :
 
 
 	// Other methods
+
+	/********************************************************
+	 *** Display the vertex's incoming and outcoming arcs ***
+	 *******************************************************/
 	void VERdisplayVertex();
 };
 
