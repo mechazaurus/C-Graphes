@@ -35,9 +35,13 @@ CVertex :: ~CVertex() {
 		delete(vVERIncomingArcs[uiLoop]);
 	}
 
-	for (unsigned int uiLoop = 0; uiLoop < vVEROutcomingArcs.size(); uiLoop++) {
+	vVERIncomingArcs.clear();
+
+	for (unsigned int uiLoop = 0 ; uiLoop < vVEROutcomingArcs.size() ; uiLoop++) {
 		delete(vVEROutcomingArcs[uiLoop]);
 	}
+
+	vVEROutcomingArcs.clear();
 }
 
 /*******************************
@@ -65,7 +69,7 @@ unsigned int CVertex :: VERgetIncomingVectorSize() {
  *** E : uiIndex the position                                                 ***
  *******************************************************************************/
 unsigned int CVertex :: VERgetIncomingArcDestination(unsigned int uiIndex) {
-	return vVERIncomingArcs[uiIndex]->ARCgetVertexNumber();
+	return vVERIncomingArcs[uiIndex]->ARCgetVertex();
 }
 
 /*******************************************
@@ -74,15 +78,15 @@ unsigned int CVertex :: VERgetIncomingArcDestination(unsigned int uiIndex) {
 *******************************************/
 void CVertex :: VERaddIncomingArc(CArc *ARCParam) {
 
-	if (ARCParam->ARCgetVertexNumber() == uiVERNumber) {
+	if (ARCParam->ARCgetVertex() == uiVERNumber) {
 		throw CException(C_VERTEX_ITSELF, "Un sommet ne peut pas pointer vers lui-meme");
 	}
 
-	unsigned int iIncomingVectorSize = vVERIncomingArcs.size();
+	unsigned int uiIncomingVectorSize = vVERIncomingArcs.size();
 
-	for (unsigned int uiLoop = 0 ; uiLoop < iIncomingVectorSize ; uiLoop++) {
+	for (unsigned int uiLoop = 0 ; uiLoop < uiIncomingVectorSize ; uiLoop++) {
 
-		if (vVERIncomingArcs[uiLoop]->ARCgetVertexNumber() == ARCParam->ARCgetVertexNumber()) {
+		if (vVERIncomingArcs[uiLoop]->ARCgetVertex() == ARCParam->ARCgetVertex()) {
 			throw CException(C_VERTEX_ARC_ALREADY_EXISTS, "L'arc existe deja dans la liste des arcs entrants");
 		}
 	}
@@ -90,30 +94,25 @@ void CVertex :: VERaddIncomingArc(CArc *ARCParam) {
 	vVERIncomingArcs.push_back(ARCParam);
 }
 
-/***************************************************
+/**************************************************
 *** Delete an arc from the incoming arcs vector ***
 *** E : The arc to delete                       ***
 **************************************************/
 void CVertex :: VERdeleteIncomingArc(CArc *ARCParam) {
 
-	unsigned int uiEndIndex = vVERIncomingArcs.size();
-	vector<CArc *> vTemp;
+	unsigned int uiVertexSize = vVERIncomingArcs.size();
 
-	for (unsigned int uiLoop = 0; uiLoop < uiEndIndex; uiLoop++) {
+	for (unsigned int uiLoop = 0 ; uiLoop < uiVertexSize; uiLoop++) {
 
-		if (vVERIncomingArcs[uiLoop]->ARCgetVertexNumber() != ARCParam->ARCgetVertexNumber()) {
-			vTemp.push_back(vVERIncomingArcs[uiLoop]);
+		if (vVERIncomingArcs[uiLoop]->ARCgetVertex() == ARCParam->ARCgetVertex()) {
+			vVERIncomingArcs.erase(vVERIncomingArcs.begin() + uiLoop);
+			free(ARCParam);
 		}
 	}
 
-	if (vTemp.size() == vVERIncomingArcs.size()) {
+	if (uiVertexSize == vVERIncomingArcs.size()) {
 		throw CException(C_VERTEX_ARC_NOT_IN_VECTOR, "L'arc n'est pas present dans la liste des arcs entrants");
 	}
-	else {
-		vVERIncomingArcs.swap(vTemp);
-	}
-
-	free(ARCParam);
 }
 
 
@@ -134,7 +133,7 @@ unsigned int CVertex :: VERgetOutcomingVectorSize() {
 *** E : uiIndex the position                                                 ***
 *******************************************************************************/
 unsigned int CVertex::VERgetOutcomingArcDestination(unsigned int uiIndex) {
-	return vVEROutcomingArcs[uiIndex]->ARCgetVertexNumber();
+	return vVEROutcomingArcs[uiIndex]->ARCgetVertex();
 }
 
 /********************************************
@@ -143,14 +142,14 @@ unsigned int CVertex::VERgetOutcomingArcDestination(unsigned int uiIndex) {
 ********************************************/
 void CVertex::VERaddOutcomingArc(CArc *ARCParam) {
 
-	if (ARCParam->ARCgetVertexNumber() == uiVERNumber) {
+	if (ARCParam->ARCgetVertex() == uiVERNumber) {
 		throw CException(C_VERTEX_ITSELF, "Un sommet ne peut pas pointer vers lui-meme");
 	}
 
-	unsigned int iIncomingVectorSize = vVEROutcomingArcs.size();
+	unsigned int uiOutcomingVectorSize = vVEROutcomingArcs.size();
 
-	for (unsigned int uiLoop = 0 ; uiLoop < iIncomingVectorSize ; uiLoop++) {
-		if (vVEROutcomingArcs[uiLoop]->ARCgetVertexNumber() == ARCParam->ARCgetVertexNumber()) {
+	for (unsigned int uiLoop = 0 ; uiLoop < uiOutcomingVectorSize; uiLoop++) {
+		if (vVEROutcomingArcs[uiLoop]->ARCgetVertex() == ARCParam->ARCgetVertex()) {
 			throw CException(C_VERTEX_ARC_ALREADY_EXISTS, "L'arc existe deja dans la liste des arcs sortants");
 		}
 	}
@@ -164,23 +163,19 @@ void CVertex::VERaddOutcomingArc(CArc *ARCParam) {
 ***************************************************/
 void CVertex::VERdeleteOutcomingArc(CArc *ARCParam) {
 
-	unsigned int uiEndIndex = vVEROutcomingArcs.size();
-	vector<CArc *> vTemp;
+	unsigned int uiVertexSize = vVEROutcomingArcs.size();
 
-	for (unsigned int uiLoop = 0; uiLoop < uiEndIndex; uiLoop++) {
+	for (unsigned int uiLoop = 0; uiLoop < uiVertexSize; uiLoop++) {
 
-		if (vVEROutcomingArcs[uiLoop]->ARCgetVertexNumber() != ARCParam->ARCgetVertexNumber()) {
-			vTemp.push_back(vVEROutcomingArcs[uiLoop]);
+		if (vVEROutcomingArcs[uiLoop]->ARCgetVertex() == ARCParam->ARCgetVertex()) {
+			vVEROutcomingArcs.erase(vVEROutcomingArcs.begin() + uiLoop);
+			free(ARCParam);
 		}
 	}
 
-	if (vTemp.size() == vVEROutcomingArcs.size()) {
-		throw CException(C_VERTEX_ARC_NOT_IN_VECTOR, "L'arc n'est pas present dans la liste des arcs sortants");
-	} else {
-		vVEROutcomingArcs.swap(vTemp);
+	if (uiVertexSize == vVEROutcomingArcs.size()) {
+		throw CException(C_VERTEX_ARC_NOT_IN_VECTOR, "L'arc n'est pas present dans la liste des arcs entrants");
 	}
-
-	free(ARCParam);
 }
 
 
@@ -192,7 +187,7 @@ void CVertex::VERdeleteOutcomingArc(CArc *ARCParam) {
 *******************************************************/
 void CVertex :: VERdisplayVertex() {
 
-	cout << "Sommet numero " << uiVERNumber << endl;
+	cout << "Sommet " << uiVERNumber << endl;
 	cout << "Arc(s) entrant(s) : " << endl;
 
 	if (vVERIncomingArcs.size() == 0) {
@@ -200,20 +195,18 @@ void CVertex :: VERdisplayVertex() {
 	} else {
 
 		for (unsigned int uiLoop = 0 ; uiLoop < vVERIncomingArcs.size() ; uiLoop++) {
-			cout << vVERIncomingArcs[uiLoop]->ARCgetVertexNumber() << "->" << uiVERNumber << endl;
+			cout << vVERIncomingArcs[uiLoop]->ARCgetVertex() << "->" << uiVERNumber << endl;
 		}
-
-		cout << endl;
 	}
 
 	cout << "Arc(s) sortant(s) : " << endl;
 
-	if (vVERIncomingArcs.size() == 0) {
+	if (vVEROutcomingArcs.size() == 0) {
 		cout << "aucun" << endl;
 	} else {
 		
 		for (unsigned int uiLoop = 0 ; uiLoop < vVEROutcomingArcs.size() ; uiLoop++) {
-			cout << uiVERNumber << "->" << vVEROutcomingArcs[uiLoop]->ARCgetVertexNumber() << endl;
+			cout << uiVERNumber << "->" << vVEROutcomingArcs[uiLoop]->ARCgetVertex() << endl;
 		}
 
 		cout << endl;

@@ -33,6 +33,7 @@ public :
 	*** Copy constructor ***
 	***********************/
 	CVertex(CVertex &VERParam);
+
 	/**********************************************
 	*** Constructor setting the vertex's number ***
 	*** E : uiParam the value                   ***

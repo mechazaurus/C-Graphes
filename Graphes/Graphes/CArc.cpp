@@ -6,14 +6,14 @@
  *** Can't be used by users        ***
  ************************************/
 CArc :: CArc() {
-	uiARCVertexNumber = 0;
+	uiARCVertex = 0;
 }
 
 /************************
  *** Copy constructor ***
  ***********************/
 CArc :: CArc(CArc &ARCParam) {
-	uiARCVertexNumber = ARCParam.uiARCVertexNumber;
+	uiARCVertex = ARCParam.uiARCVertex;
 }
 
 /*******************************************************
@@ -21,13 +21,13 @@ CArc :: CArc(CArc &ARCParam) {
  *** E : uiParam the value                           ***
  ******************************************************/
 CArc :: CArc(unsigned int uiParam) {
-	uiARCVertexNumber = uiParam;
+	uiARCVertex = uiParam;
 }
 
 /****************************************
  *** Get the arc destination          ***
  *** R : The value of the destiantion ***
  ***************************************/
-unsigned int CArc :: ARCgetVertexNumber() {
-	return uiARCVertexNumber;
+unsigned int CArc :: ARCgetVertex() {
+	return uiARCVertex;
 }

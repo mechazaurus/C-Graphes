@@ -6,7 +6,7 @@ class CArc {
 private :
 
 	// Attributes
-	unsigned int uiARCVertexNumber;
+	unsigned int uiARCVertex;
 
 	/************************************
 	*** Default constructor           ***
@@ -21,6 +21,7 @@ public :
 	*** Copy constructor ***
 	***********************/
 	CArc (CArc &ARCParam);
+
 	/******************************************************
 	*** Constructor setting the arc's destination value ***
 	*** E : uiParam the value                           ***
@@ -36,7 +37,7 @@ public :
 	*** Get the arc's destination        ***
 	*** R : The value of the destination ***
 	***************************************/
-	unsigned int ARCgetVertexNumber();
+	unsigned int ARCgetVertex();
 };
 
 #endif
