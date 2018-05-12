@@ -1,5 +1,5 @@
 #ifndef C_GRAPH
-#define C_GRAPH 8
+#define C_GRAPH 0
 
 #include "CVertex.h"
 #include "CFileReader.h"

@@ -15,6 +15,24 @@ CGraph :: CGraph(CGraph &GRAParam) {
 *********************/
 CGraph :: CGraph(CFileReader FIRParam) {
 
+	for (unsigned int uiLoop = 0 ; uiLoop < FIRParam.FIRgetVerticesNumber() ; uiLoop++) {
+		vGRAVertices.push_back(new CVertex(FIRParam.FIRgetVertexValueAt(uiLoop)));
+	}
+
+	for (unsigned int uiLoop1 = 0 ; uiLoop1 < FIRParam.FIRgetArcsNumber() * 2 ; uiLoop1+=2) {
+
+		for (unsigned int uiLoop2 = 0; uiLoop2 < FIRParam.FIRgetVerticesNumber(); uiLoop2++) {
+			if (FIRParam.FIRgetArcValueAt(uiLoop1) == vGRAVertices[uiLoop2]->VERgetVertexNumber()) {
+				vGRAVertices[uiLoop2]->VERaddOutcomingArc(new CArc(FIRParam.FIRgetArcValueAt(uiLoop1 + 1)));
+			}
+		}
+
+		for (unsigned int uiLoop3 = 0; uiLoop3 < FIRParam.FIRgetVerticesNumber(); uiLoop3++) {
+			if (FIRParam.FIRgetArcValueAt(uiLoop1 + 1) == vGRAVertices[uiLoop3]->VERgetVertexNumber()) {
+				vGRAVertices[uiLoop3]->VERaddIncomingArc(new CArc(FIRParam.FIRgetArcValueAt(uiLoop1)));
+			}
+		}
+	}
 }
 
 /****************************************************
@@ -74,7 +92,7 @@ void CGraph :: GRAdeleteVertex(CVertex *VERParam) {
 	}
 
 	if (uiVectorSize == vGRAVertices.size()) {
-		throw CException(C_GRAPH_VERTEX_NOT_IN_VECTOR, "Le sommet n'est pas présent dans le graphe.");
+		throw CException(C_GRAPH_VERTEX_NOT_IN_VECTOR, "Le sommet n'est pas present dans le graphe.");
 	}
 }
 
