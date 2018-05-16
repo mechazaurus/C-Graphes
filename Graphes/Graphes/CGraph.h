@@ -68,6 +68,12 @@ public :
 	*** R : The vector of Vertex             ***
 	*******************************************/
 	vector<CVertex*> GRAGetVerticesVector();
+
+	/*******************************************
+	*** Get the vertex at the index position ***
+	*** R : The vertex                       ***
+	*******************************************/
+	CVertex* GRAGetVertexAtIndex(unsigned int uiParam);
 	
 
 

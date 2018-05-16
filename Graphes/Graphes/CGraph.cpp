@@ -88,6 +88,7 @@ void CGraph :: GRAdeleteVertex(CVertex *VERParam) {
 		if (VERParam->VERgetVertexNumber() == vGRAVertices[uiLoop]->VERgetVertexNumber()) {
 			vGRAVertices.erase(vGRAVertices.begin() + uiLoop);
 			delete(VERParam);
+			uiVectorSize--;
 		}
 	}
 
@@ -102,6 +103,14 @@ void CGraph :: GRAdeleteVertex(CVertex *VERParam) {
 *******************************************/
 vector<CVertex*> CGraph :: GRAGetVerticesVector() {
 	return vGRAVertices;
+}
+
+/*******************************************
+*** Get the vertex at the index position ***
+*** R : The vertex                       ***
+*******************************************/
+CVertex* CGraph :: GRAGetVertexAtIndex(unsigned int uiParam) {
+	return vGRAVertices[uiParam];
 }
 
 

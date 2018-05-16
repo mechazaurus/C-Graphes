@@ -107,6 +107,7 @@ void CVertex :: VERdeleteIncomingArc(CArc *ARCParam) {
 
 		if (vVERIncomingArcs[uiLoop]->ARCgetVertex() == ARCParam->ARCgetVertex()) {
 			vVERIncomingArcs.erase(vVERIncomingArcs.begin() + uiLoop);
+			uiVertexSize--;
 			free(ARCParam);
 		}
 	}
@@ -170,6 +171,7 @@ void CVertex::VERdeleteOutcomingArc(CArc *ARCParam) {
 
 		if (vVEROutcomingArcs[uiLoop]->ARCgetVertex() == ARCParam->ARCgetVertex()) {
 			vVEROutcomingArcs.erase(vVEROutcomingArcs.begin() + uiLoop);
+			uiVertexSize--;
 			free(ARCParam);
 		}
 	}
