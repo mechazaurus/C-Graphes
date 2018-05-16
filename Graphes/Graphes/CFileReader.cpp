@@ -72,6 +72,22 @@ unsigned int CFileReader :: FIRgetVertexValueAt(unsigned int uiIndex) {
 }
 
 /***************************************************
+*** Return the array containing the arcs numbers ***
+*** R: The array                                 ***
+***************************************************/
+unsigned int * CFileReader::FIRgetArcsValues() {
+	return uiFIRArcsValues;
+}
+
+/********************************************************
+ *** Return the array containing the vertices numbers ***
+ *** R: The array                                     ***
+ *******************************************************/
+unsigned int * CFileReader:: FIRgetVertexValues() {
+	return uiFIRVerticesValues;
+}
+
+/***************************************************
 *** Fill the object with the file's informations ***
 *** The file path must have been set !!          ***
 ***************************************************/
@@ -163,6 +179,19 @@ void CFileReader::FIRImportFromFile() {
 		free(uiFIRArcsValues);
 		free(uiFIRVerticesValues);
 		throw CException(C_FILE_READER_INCONSISTENCY_VALUES, "Incoherence entre le nombre de sommets et le nombre de valeurs.");
+	}
+
+	// Check if we have the same value twice in the array
+	for (unsigned int uiLoop1 = 0 ; uiLoop1 < uiFIRVerticesNumber ; uiLoop1++) {
+		for (unsigned int uiLoop2 = uiLoop1 + 1 ; uiLoop2 < uiFIRVerticesNumber ; uiLoop2++) {
+			if (uiFIRVerticesValues[uiLoop1] == uiFIRVerticesValues[uiLoop2]) {
+				free(uiFIRArcsValues);
+				free(uiFIRVerticesValues);
+				uiFIRArcsValues = nullptr;
+				uiFIRVerticesValues = nullptr;
+				throw CException(C_FILE_READER_SAME_VALUE, "Deux sommets ont le meme identifiant.");
+			}
+		}
 	}
 
 	// Get the arcs values

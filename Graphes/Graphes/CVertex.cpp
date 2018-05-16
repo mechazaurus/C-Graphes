@@ -103,11 +103,10 @@ void CVertex :: VERdeleteIncomingArc(CArc *ARCParam) {
 
 	unsigned int uiVertexSize = vVERIncomingArcs.size();
 
-	for (unsigned int uiLoop = 0 ; uiLoop < uiVertexSize; uiLoop++) {
+	for (unsigned int uiLoop = 0 ; uiLoop < vVERIncomingArcs.size() ; uiLoop++) {
 
 		if (vVERIncomingArcs[uiLoop]->ARCgetVertex() == ARCParam->ARCgetVertex()) {
 			vVERIncomingArcs.erase(vVERIncomingArcs.begin() + uiLoop);
-			uiVertexSize--;
 			free(ARCParam);
 		}
 	}
@@ -167,11 +166,10 @@ void CVertex::VERdeleteOutcomingArc(CArc *ARCParam) {
 
 	unsigned int uiVertexSize = vVEROutcomingArcs.size();
 
-	for (unsigned int uiLoop = 0; uiLoop < uiVertexSize; uiLoop++) {
+	for (unsigned int uiLoop = 0 ; uiLoop < vVEROutcomingArcs.size() ; uiLoop++) {
 
 		if (vVEROutcomingArcs[uiLoop]->ARCgetVertex() == ARCParam->ARCgetVertex()) {
 			vVEROutcomingArcs.erase(vVEROutcomingArcs.begin() + uiLoop);
-			uiVertexSize--;
 			free(ARCParam);
 		}
 	}

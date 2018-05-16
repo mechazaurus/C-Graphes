@@ -8,6 +8,7 @@
 #define C_FILE_READER_OUT_OF_ARRAY 1204
 #define C_FILE_READER_INCONSISTENCY_VALUES 1205
 #define C_FILE_READER_INVALID_ARCS_VALUE 1206
+#define C_FILE_READER_SAME_VALUE 1207
 
 #include "CException.h"
 #include <fstream>
@@ -76,6 +77,18 @@ public :
 	*** Throws CException if the position is outside the array               ***
 	***************************************************************************/
 	unsigned int FIRgetVertexValueAt(unsigned int uiIndex);
+
+	/***************************************************
+	*** Return the array containing the arcs numbers ***
+	*** R: The array                                 ***
+	***************************************************/
+	unsigned int * FIRgetArcsValues();
+
+	/*******************************************************
+	*** Return the array containing the vertices numbers ***
+	*** R: The array                                     ***
+	*******************************************************/
+	unsigned int * FIRgetVertexValues();
 
 	/***************************************************
 	*** Fill the object with the file's informations ***
