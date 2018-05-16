@@ -77,7 +77,7 @@ unsigned int CVertex :: VERgetIncomingArcDestination(unsigned int uiIndex) {
 *** Add an arc to the incoming arcs list ***
 *** E : ARCParam the arc to add          ***
 *******************************************/
-void CVertex :: VERaddIncomingArc(CArc &ARCParam) {
+void CVertex :: VERaddIncomingArc(CArc *ARCParam) {
 
 	if (ARCParam->ARCgetVertex() == uiVERNumber) {
 		throw CException(C_VERTEX_ITSELF, "Un sommet ne peut pas pointer vers lui-meme");
@@ -92,7 +92,7 @@ void CVertex :: VERaddIncomingArc(CArc &ARCParam) {
 		}
 	}
 
-	vVERIncomingArcs.push_back(&ARCParam);
+	vVERIncomingArcs.push_back(ARCParam);
 }
 
 /**************************************************

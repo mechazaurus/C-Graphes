@@ -100,8 +100,7 @@ void CGraph :: GRAdeleteVertex(CVertex *VERParam) {
 *** Get vector of Vextex                 ***
 *** R : The vector of Vertex             ***
 *******************************************/
-CGraph::vector<CVertex*> GRAGetVerticesVector()
-{
+vector<CVertex*> CGraph :: GRAGetVerticesVector() {
 	return vGRAVertices;
 }
 
