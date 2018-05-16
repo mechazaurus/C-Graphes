@@ -10,7 +10,7 @@ CArc :: CArc() {
 }
 
 /************************
- *** Copy constructor ***
+ *** Copy constructor **
  ***********************/
 CArc :: CArc(CArc &ARCParam) {
 	uiARCVertex = ARCParam.uiARCVertex;
