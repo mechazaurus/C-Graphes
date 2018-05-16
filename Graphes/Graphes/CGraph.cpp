@@ -7,7 +7,7 @@
 *** Copy constructor ***
 ***********************/
 CGraph :: CGraph(CGraph &GRAParam) {
-	vGRAVertices = GRAParam.vGRAVertices;
+	vGRAVertices = GRAParam.GRAGetVerticesVector();
 }
 
 /*********************
@@ -95,6 +95,17 @@ void CGraph :: GRAdeleteVertex(CVertex *VERParam) {
 		throw CException(C_GRAPH_VERTEX_NOT_IN_VECTOR, "Le sommet n'est pas present dans le graphe.");
 	}
 }
+
+/*******************************************
+*** Get vector of Vextex                 ***
+*** R : The vector of Vertex             ***
+*******************************************/
+CGraph::vector<CVertex*> GRAGetVerticesVector()
+{
+	return vGRAVertices;
+}
+
+
 
 
 

@@ -63,6 +63,14 @@ public :
 	void GRAdeleteVertex(CVertex *VERParam);
 
 
+	/*******************************************
+	*** Get vector of Vextex                 ***
+	*** R : The vector of Vertex             ***
+	*******************************************/
+	vector<CVertex*> GRAGetVerticesVector();
+	
+
+
 
 	// Other methods
 
