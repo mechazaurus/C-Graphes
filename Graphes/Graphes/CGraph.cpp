@@ -123,6 +123,60 @@ CVertex* CGraph :: GRAGetVertexAtIndex(unsigned int uiParam) {
 	return vGRAVertices[uiParam];
 }
 
+/*******************************************
+*** Delete completely a Vertex           ***
+***  E : The vertex to delete            ***
+*******************************************/
+void CGraph::GRAFullyDeleteVertex(CVertex *VERParam)
+{
+	for (unsigned int uiLoop = 0; uiLoop < VERParam->VERgetIncomingVectorSize(); uiLoop++)
+	{
+		unsigned int uiVertexPointing = VERParam->VERgetIncomingArcDestination(uiLoop);
+		GRAGetVertex(uiVertexPointing)->VERDeleteOutcomingArc(VERParam->VERgetVertexNumber());
+	}
+
+	for (unsigned int uiLoop = 0; uiLoop < VERParam->VERgetOutcomingVectorSize(); uiLoop++)
+	{
+		unsigned int uiVertexPointing = VERParam->VERgetOutcomingArcDestination(uiLoop);
+		GRAGetVertex(uiVertexPointing)->VERDeleteIncomingArc(VERParam->VERgetVertexNumber());
+	}
+	unsigned int uiPosition = GRAGetVertex(VERParam);
+	delete(VERParam);
+	vGRAVertices.erase(vGRAVertices.begin() + uiPosition);
+}
+
+/*******************************************
+*** Get vextex with uiNumber                ***
+***  E : The vertex with uiNumber to return ***
+*******************************************/
+CVertex* CGraph::GRAGetVertex(unsigned int uiNumber)
+{
+	for (unsigned int uiLoop = 0; uiLoop < vGRAVertices.size(); uiLoop++)
+	{
+		if (vGRAVertices[uiLoop]->VERgetVertexNumber() == uiNumber)
+		{
+			return vGRAVertices[uiLoop];
+		}
+	}
+	throw CException(C_GRAPH_VERTEX_NOT_IN_VECTOR, "Le sommet avec le nombre uiNumber n'est pas present dans le graphe.");
+}
+
+/*******************************************
+*** Get Vertex index				    ***
+***  E : The vertex					    ***
+*******************************************/
+unsigned int CGraph::GRAGetVertex(CVertex *VERParam)
+{
+	for (unsigned int uiLoop = 0; uiLoop < vGRAVertices.size(); uiLoop++)
+	{
+		if (vGRAVertices[uiLoop]->VERgetVertexNumber() == VERParam->VERgetVertexNumber())
+		{
+			return uiLoop;
+		}
+	}
+	throw CException(C_GRAPH_VERTEX_NOT_IN_VECTOR, "Le sommet n'est pas present dans le graphe.");
+
+}
 
 
 

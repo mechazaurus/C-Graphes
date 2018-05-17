@@ -79,6 +79,12 @@ public :
 	 **************************************************/
 	void VERdeleteIncomingArc(CArc *ARCParam);
 
+	/**********************************************************************
+	*** Delete an arc from the incoming arcs vector with uiLeaving      ***
+	*** E : The arc to delete										    ***
+	*********************************************************************/
+	void VERDeleteIncomingArc(unsigned int  uiLeaving);
+
 
 
 	// Manipulations of outcoming arcs
@@ -107,6 +113,11 @@ public :
 	***************************************************/
 	void VERdeleteOutcomingArc(CArc *ARCParam);
 
+	/**********************************************************************
+	*** Delete an arc from the outcoming arcs vector with uiDestination ***
+	*** E : The arc to delete										    ***
+	*********************************************************************/
+	void VERDeleteOutcomingArc(unsigned int  uiDestination);
 
 
 	// Other methods

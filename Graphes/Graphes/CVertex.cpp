@@ -31,16 +31,8 @@ CVertex :: CVertex(unsigned int uiParam) {
 *** Destructor - Free the arcs ***
 *********************************/
 CVertex :: ~CVertex() {
-	
-	for (unsigned int uiLoop = 0 ; uiLoop < vVERIncomingArcs.size() ; uiLoop++) {
-		delete(vVERIncomingArcs[uiLoop]);
-	}
 
 	vVERIncomingArcs.clear();
-
-	for (unsigned int uiLoop = 0 ; uiLoop < vVEROutcomingArcs.size() ; uiLoop++) {
-		delete(vVEROutcomingArcs[uiLoop]);
-	}
 
 	vVEROutcomingArcs.clear();
 }
@@ -116,6 +108,26 @@ void CVertex :: VERdeleteIncomingArc(CArc *ARCParam) {
 	}
 }
 
+/**********************************************************************
+*** Delete an arc from the incoming arcs vector with uiLeaving      ***
+*** E : The arc to delete										    ***
+*********************************************************************/
+void CVertex::VERDeleteIncomingArc(unsigned int  uiLeaving)
+{
+	unsigned int uiVertexSize = vVERIncomingArcs.size();
+	bool deleted = false;
+	unsigned int uiLoop = 0;
+	while (uiLoop < uiVertexSize && deleted == false)
+	{
+		if (vVERIncomingArcs[uiLoop]->ARCgetVertex() == uiLeaving)
+		{
+			free(vVERIncomingArcs[uiLoop]);
+			vVERIncomingArcs.erase(vVERIncomingArcs.begin() + uiLoop);
+			deleted = true;
+		}
+		uiLoop++;
+	}
+}
 
 
 
@@ -179,7 +191,27 @@ void CVertex::VERdeleteOutcomingArc(CArc *ARCParam) {
 	}
 }
 
+/***************************************************
+*** Delete an arc from the outcoming arcs vector ***
+*** E : The arc to delete with uIDestination     ***
+***************************************************/
+void CVertex::VERDeleteOutcomingArc(unsigned int  uiDestination)
+{
+	unsigned int uiVertexSize = vVEROutcomingArcs.size();
+	bool deleted = false;
+	unsigned int uiLoop = 0;
+	while (uiLoop < uiVertexSize && deleted == false)
+	{
+		if (vVEROutcomingArcs[uiLoop]->ARCgetVertex() == uiDestination)
+		{
+			free(vVEROutcomingArcs[uiLoop]);
+			vVEROutcomingArcs.erase(vVEROutcomingArcs.begin() + uiLoop);
+			deleted = true;
+		}
+		uiLoop++;
 
+	}
+}
 
 // Other methods
 

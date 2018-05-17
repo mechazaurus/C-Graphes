@@ -77,7 +77,25 @@ public :
 	*******************************************/
 	CVertex* GRAGetVertexAtIndex(unsigned int uiParam);
 	
+	/*******************************************
+	*** Delete completely a Vertex           ***
+	***  E : The vertex to delete            ***
+	*******************************************/
+	void GRAFullyDeleteVertex(CVertex *VERParam);
 
+	/*******************************************
+	*** Get Vertex with uiNumber number         ***
+	***  E : The vertex with uiNumber to return ***
+	*******************************************/
+	CVertex* GRAGetVertex(unsigned int uiNumber);
+
+
+
+	/*******************************************
+	*** Get Vertex index				    ***
+	***  E : The vertex					    ***
+	*******************************************/
+	unsigned int GRAGetVertex(CVertex *VERParam);
 
 
 	// Other methods
