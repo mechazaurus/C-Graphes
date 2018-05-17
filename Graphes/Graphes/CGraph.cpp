@@ -53,9 +53,15 @@ CGraph :: ~CGraph() {
 
 	unsigned int uiVectorSize = vGRAVertices.size();
 
-	for (unsigned int uiLoop = 0 ; uiLoop < uiVectorSize ; uiLoop++) {
-		delete(vGRAVertices[uiLoop]);
+	unsigned int uiCounter = 0;
+	unsigned int zero = 0;
+	while (uiCounter < uiVectorSize)
+	{
+		GRAFullyDeleteVertex(vGRAVertices[0]);
+		uiCounter++;
 	}
+
+	vGRAVertices.clear();
 }
 
 

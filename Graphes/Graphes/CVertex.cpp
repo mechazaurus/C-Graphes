@@ -31,8 +31,16 @@ CVertex :: CVertex(unsigned int uiParam) {
 *** Destructor - Free the arcs ***
 *********************************/
 CVertex :: ~CVertex() {
+	
+	for (unsigned int uiLoop = 0 ; uiLoop < vVERIncomingArcs.size() ; uiLoop++) {
+		delete(vVERIncomingArcs[uiLoop]);
+	}
 
 	vVERIncomingArcs.clear();
+
+	for (unsigned int uiLoop = 0 ; uiLoop < vVEROutcomingArcs.size() ; uiLoop++) {
+		delete(vVEROutcomingArcs[uiLoop]);
+	}
 
 	vVEROutcomingArcs.clear();
 }
