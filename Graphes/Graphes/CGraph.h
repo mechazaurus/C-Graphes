@@ -30,9 +30,11 @@ public :
 	***********************/
 	CGraph(CGraph &GRAParam);
 
-	/**********************
-	 *** BIG PART TO DO ***
-	 *********************/
+	/**************************************************************
+	*** Constructors taking a CFileReader                       ***
+	*** It will construct the graph wit the file's informations ***
+	*** E : the file to use                                     ***
+	**************************************************************/
 	CGraph(CFileReader FIRParam);
 
 	/****************************************************

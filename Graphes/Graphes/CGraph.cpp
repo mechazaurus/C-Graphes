@@ -7,12 +7,19 @@
 *** Copy constructor ***
 ***********************/
 CGraph :: CGraph(CGraph &GRAParam) {
-	vGRAVertices = GRAParam.GRAGetVerticesVector();
+	
+	unsigned int uiVectorSize = GRAParam.GRAgetVerticesVectorSize();
+
+	for (unsigned int uiLoop = 0; uiLoop < uiVectorSize; uiLoop++) {
+		vGRAVertices.push_back(GRAParam.GRAGetVertexAtIndex(uiLoop));
+	}
 }
 
-/*********************
-*** BIG PART TO DO ***
-*********************/
+/**************************************************************
+*** Constructors taking a CFileReader                       ***
+*** It will construct the graph wit the file's informations ***
+*** E : the file to use                                     ***
+**************************************************************/
 CGraph :: CGraph(CFileReader FIRParam) {
 
 	if (FIRParam.FIRgetArcsValues() == nullptr || FIRParam.FIRgetVertexValues() == nullptr) {

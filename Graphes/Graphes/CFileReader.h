@@ -31,6 +31,11 @@ private :
 
 public :
 
+	/***********************
+	*** Copy constructor ***
+	***********************/
+	CFileReader(CFileReader &FIRParam);
+
 	/********************************************************
 	*** Constructor creating a CFileReader with the       ***
 	*** path of the file we want to get informations from ***
@@ -68,7 +73,6 @@ public :
 	*** R : The number of rows                             ***
 	*********************************************************/
 	unsigned int FIRgetVerticesNumber();
-
 
 	/***************************************************************************
 	*** This methods is used to get the value from the array at the position ***

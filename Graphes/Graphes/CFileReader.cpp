@@ -1,5 +1,24 @@
 #include "CFileReader.h"
 
+/***********************
+*** Copy constructor ***
+***********************/
+CFileReader :: CFileReader(CFileReader &FIRParam) {
+	uiFIRArcsNumber = FIRParam.FIRgetArcsNumber();
+	uiFIRVerticesNumber = FIRParam.FIRgetVerticesNumber();
+
+	uiFIRArcsValues = (unsigned int *) malloc (2 * uiFIRArcsNumber * sizeof(unsigned int));
+	uiFIRVerticesValues = (unsigned int *)malloc(uiFIRVerticesNumber * sizeof(unsigned int));
+
+	for (unsigned int uiLoop = 0 ; uiLoop < uiFIRArcsNumber * 2 ; uiLoop++) {
+		uiFIRArcsValues[uiLoop] = FIRParam.FIRgetArcValueAt(uiLoop);
+	}
+
+	for (unsigned int uiLoop = 0 ; uiLoop < uiFIRVerticesNumber ; uiLoop++) {
+		uiFIRVerticesValues[uiLoop] = FIRParam.FIRgetVertexValueAt(uiLoop);
+	}
+}
+
 /********************************************************
 *** Constructor creating a CFileReader with the       ***
 *** path of the file we want to get informations from ***
@@ -9,12 +28,15 @@ CFileReader :: CFileReader(string sPath) {
 	sFIRFilePath = sPath;
 }
 
+
 /***********************************
 *** Destructor - Free the arrays ***
 ***********************************/
 CFileReader :: ~CFileReader() {
 	free(uiFIRArcsValues);
 	free(uiFIRVerticesValues);
+	uiFIRArcsValues = nullptr;
+	uiFIRVerticesValues = nullptr;
 }
 
 /***************************************************************
@@ -147,6 +169,8 @@ void CFileReader::FIRImportFromFile() {
 	if (sTmpToGetLines != "Sommets=[") {
 		free(uiFIRArcsValues);
 		free(uiFIRVerticesValues);
+		uiFIRArcsValues = nullptr;
+		uiFIRVerticesValues = nullptr;
 		throw CException(C_FILE_READER_INVALID_FORMAT_FROM_FILE, "Le fichier ne correspond pas au format impose.");
 	}
 	
@@ -159,6 +183,8 @@ void CFileReader::FIRImportFromFile() {
 		if (uiVertexIndex == uiFIRVerticesNumber) {
 			free(uiFIRArcsValues);
 			free(uiFIRVerticesValues);
+			uiFIRArcsValues = nullptr;
+			uiFIRVerticesValues = nullptr;
 			throw CException(C_FILE_READER_INCONSISTENCY_VALUES, "Incoherence entre le nombre de sommets et le nombre de valeurs.");
 		}
 
@@ -166,6 +192,8 @@ void CFileReader::FIRImportFromFile() {
 			if (!isdigit(sTmpToGetLines[uiLoop])) {
 				free(uiFIRArcsValues);
 				free(uiFIRVerticesValues);
+				uiFIRArcsValues = nullptr;
+				uiFIRVerticesValues = nullptr;
 				throw CException(C_FILE_READER_INVALID_VERTICES_VALUE, "Valeur de sommet incorrecte.");
 			}
 		}
@@ -178,6 +206,8 @@ void CFileReader::FIRImportFromFile() {
 	if (uiVertexIndex < uiFIRVerticesNumber) {
 		free(uiFIRArcsValues);
 		free(uiFIRVerticesValues);
+		uiFIRArcsValues = nullptr;
+		uiFIRVerticesValues = nullptr;
 		throw CException(C_FILE_READER_INCONSISTENCY_VALUES, "Incoherence entre le nombre de sommets et le nombre de valeurs.");
 	}
 
@@ -200,6 +230,8 @@ void CFileReader::FIRImportFromFile() {
 	if (sTmpToGetLines != "Arcs=[") {
 		free(uiFIRArcsValues);
 		free(uiFIRVerticesValues);
+		uiFIRArcsValues = nullptr;
+		uiFIRVerticesValues = nullptr;
 		throw CException(C_FILE_READER_INVALID_FORMAT_FROM_FILE, "Le fichier ne correspond pas au format impose.");
 	}
 
@@ -212,6 +244,8 @@ void CFileReader::FIRImportFromFile() {
 		if (uiArcIndex == uiFIRArcsNumber * 2) {
 			free(uiFIRArcsValues);
 			free(uiFIRVerticesValues);
+			uiFIRArcsValues = nullptr;
+			uiFIRVerticesValues = nullptr;
 			throw CException(C_FILE_READER_INCONSISTENCY_VALUES, "Incoherence entre le nombre de sommets et le nombre de valeurs.");
 		}
 
@@ -223,6 +257,8 @@ void CFileReader::FIRImportFromFile() {
 				if (!isdigit(sTmpToGetLines[uiLoop])) {
 					free(uiFIRArcsValues);
 					free(uiFIRVerticesValues);
+					uiFIRArcsValues = nullptr;
+					uiFIRVerticesValues = nullptr;
 					throw CException(C_FILE_READER_INVALID_ARCS_VALUE, "Valeur d'arc incorrecte.");
 				} else {
 					sValue += sTmpToGetLines[uiLoop];
@@ -240,6 +276,8 @@ void CFileReader::FIRImportFromFile() {
 	if (uiArcIndex < uiFIRArcsNumber * 2) {
 		free(uiFIRArcsValues);
 		free(uiFIRVerticesValues);
+		uiFIRArcsValues = nullptr;
+		uiFIRVerticesValues = nullptr;
 		throw CException(C_FILE_READER_INCONSISTENCY_VALUES, "Incoherence entre le nombre de sommets et le nombre de valeurs.");
 	}
 }
