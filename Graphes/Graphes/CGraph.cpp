@@ -6,9 +6,9 @@
 /***********************
 *** Copy constructor ***
 ***********************/
-CGraph :: CGraph(CGraph &GRAParam) {
+CGraph :: CGraph(const CGraph &GRAParam) {
 	
-	unsigned int uiVectorSize = GRAParam.GRAgetVerticesVectorSize();
+	const unsigned int uiVectorSize = GRAParam.GRAgetVerticesVectorSize();
 
 	for (unsigned int uiLoop = 0; uiLoop < uiVectorSize; uiLoop++) {
 		vGRAVertices.push_back(GRAParam.GRAGetVertexAtIndex(uiLoop));
@@ -53,9 +53,15 @@ CGraph :: ~CGraph() {
 
 	unsigned int uiVectorSize = vGRAVertices.size();
 
-	for (unsigned int uiLoop = 0 ; uiLoop < uiVectorSize ; uiLoop++) {
-		delete(vGRAVertices[uiLoop]);
+	unsigned int uiCounter = 0;
+	unsigned int zero = 0;
+	while (uiCounter < uiVectorSize)
+	{
+		GRAFullyDeleteVertex(vGRAVertices[0]);
+		uiCounter++;
 	}
+
+	vGRAVertices.clear();
 }
 
 
@@ -66,7 +72,7 @@ CGraph :: ~CGraph() {
 *** Get the size of the vertices vector ***
 *** R : the size of the vector          ***
 ******************************************/
-unsigned int CGraph :: GRAgetVerticesVectorSize() {
+unsigned int CGraph :: GRAgetVerticesVectorSize() const {
 	return vGRAVertices.size();
 }
 
@@ -119,7 +125,7 @@ vector<CVertex*> CGraph :: GRAGetVerticesVector() {
 *** Get the vertex at the index position ***
 *** R : The vertex                       ***
 *******************************************/
-CVertex* CGraph :: GRAGetVertexAtIndex(unsigned int uiParam) {
+CVertex* CGraph :: GRAGetVertexAtIndex(unsigned int uiParam) const {
 	return vGRAVertices[uiParam];
 }
 
@@ -176,6 +182,18 @@ unsigned int CGraph::GRAGetVertex(CVertex *VERParam)
 	}
 	throw CException(C_GRAPH_VERTEX_NOT_IN_VECTOR, "Le sommet n'est pas present dans le graphe.");
 
+}
+
+/*******************************************
+*** Reverse all arcs 				    ***
+***									    ***
+*******************************************/
+void CGraph::GRAReverseGraph(void)
+{
+	for (int uiLoop = 0; uiLoop < vGRAVertices.size(); uiLoop++)
+	{
+		vGRAVertices[uiLoop]->VERSwapArcs();
+	}
 }
 
 

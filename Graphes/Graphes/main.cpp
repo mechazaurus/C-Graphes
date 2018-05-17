@@ -1,4 +1,4 @@
-/*#include "CArc.h"
+#include "CArc.h"
 #include "CException.h"
 #include "CFileReader.h"
 #include "CGraph.h"
@@ -7,7 +7,7 @@
 #include <iostream>
 
 using namespace std;
-
+/*
 int main(int argc, char * argv[]) {
 
 	vector<CGraph> GRAGraphs;
@@ -30,10 +30,12 @@ int main(int argc, char * argv[]) {
 	for (int iLoop = 0 ; iLoop < argc - 1 ; iLoop++) {
 		GRAGraphs[iLoop].GRAdisplayGraph();
 	}
-	/*
+	
 	for (int iLoop1 = 0 ; iLoop1 < argc - 1 ; iLoop1++) {
 		// Delete tous les sommets de tous les graphes
-	}*/
-/*
+	}
+
+
 	return 0;
-}*/
+}
+*/
