@@ -32,7 +32,7 @@ public :
 	/***********************
 	*** Copy constructor ***
 	***********************/
-	CVertex(CVertex &VERParam);
+	CVertex(const CVertex &VERParam);
 
 	/**********************************************
 	*** Constructor setting the vertex's number ***
@@ -49,7 +49,7 @@ public :
 	*** Get the vertex's number ***
 	*** R: the vertex's number  ***
 	******************************/
-	unsigned int VERgetVertexNumber();
+	unsigned int VERgetVertexNumber() const;
 
 
 
@@ -59,13 +59,13 @@ public :
 	 *** Get the size of the incoming arcs vector ***
 	 *** R : the size of the vector               ***
 	 ***********************************************/
-	unsigned int VERgetIncomingVectorSize();
+	unsigned int VERgetIncomingVectorSize() const;
 
 	/***********************************************************************
 	*** Get the arc's destination value from the vector at the position ***
 	*** E : uiIndex the position                                        ***
 	**********************************************************************/
-	unsigned int VERgetIncomingArcDestination(unsigned int uiIndex);
+	unsigned int VERgetIncomingArcDestination(unsigned int uiIndex) const;
 
 	/**********************************************
 	 *** Add an arc to the incoming arcs vector ***
@@ -83,7 +83,7 @@ public :
 	*** Delete an arc from the incoming arcs vector with uiLeaving      ***
 	*** E : The arc to delete										    ***
 	*********************************************************************/
-	void VERDeleteIncomingArc(unsigned int  uiLeaving);
+	void VERDeleteIncomingArc(unsigned int uiLeaving);
 
 
 
@@ -93,13 +93,13 @@ public :
 	*** Get the size of the outcoming arcs vector ***
 	*** R : the size of the vector                ***
 	************************************************/
-	unsigned int VERgetOutcomingVectorSize();
+	unsigned int VERgetOutcomingVectorSize() const;
 
 	/*******************************************************************************
 	*** Get the arc's destination value from the incoming vector at the position ***
 	*** E : uiIndex the position                                                 ***
 	*******************************************************************************/
-	unsigned int VERgetOutcomingArcDestination(unsigned int uiIndex);
+	unsigned int VERgetOutcomingArcDestination(unsigned int uiIndex) const;
 
 	/**********************************************
 	*** Add an arc to the outcoming arcs vector ***

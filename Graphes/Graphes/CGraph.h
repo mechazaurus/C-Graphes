@@ -28,7 +28,7 @@ public :
 	/***********************
 	*** Copy constructor ***
 	***********************/
-	CGraph(CGraph &GRAParam);
+	CGraph(const CGraph &GRAParam);
 
 	/**************************************************************
 	*** Constructors taking a CFileReader                       ***
@@ -50,7 +50,7 @@ public :
 	*** Get the size of the vertices vector ***
 	*** R : the size of the vector          ***
 	******************************************/
-	unsigned int GRAgetVerticesVectorSize();
+	unsigned int GRAgetVerticesVectorSize() const;
 
 	/****************************************
 	*** Add a vertex to the vertices list ***
@@ -75,7 +75,7 @@ public :
 	*** Get the vertex at the index position ***
 	*** R : The vertex                       ***
 	*******************************************/
-	CVertex* GRAGetVertexAtIndex(unsigned int uiParam);
+	CVertex* GRAGetVertexAtIndex(unsigned int uiParam) const;
 	
 	/*******************************************
 	*** Delete completely a Vertex           ***

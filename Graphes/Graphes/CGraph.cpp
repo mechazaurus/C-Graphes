@@ -6,12 +6,12 @@
 /***********************
 *** Copy constructor ***
 ***********************/
-CGraph :: CGraph(CGraph &GRAParam) {
+CGraph :: CGraph(const CGraph &GRAParam) {
 	
 	unsigned int uiVectorSize = GRAParam.GRAgetVerticesVectorSize();
 
-	for (unsigned int uiLoop = 0; uiLoop < uiVectorSize; uiLoop++) {
-		vGRAVertices.push_back(GRAParam.GRAGetVertexAtIndex(uiLoop));
+	for (unsigned int uiLoop = 0 ; uiLoop < uiVectorSize ; uiLoop++) {
+		vGRAVertices.push_back(new CVertex(*GRAParam.GRAGetVertexAtIndex(uiLoop)));
 	}
 }
 
@@ -72,7 +72,7 @@ CGraph :: ~CGraph() {
 *** Get the size of the vertices vector ***
 *** R : the size of the vector          ***
 ******************************************/
-unsigned int CGraph :: GRAgetVerticesVectorSize() {
+unsigned int CGraph :: GRAgetVerticesVectorSize() const {
 	return vGRAVertices.size();
 }
 
@@ -125,7 +125,7 @@ vector<CVertex*> CGraph :: GRAGetVerticesVector() {
 *** Get the vertex at the index position ***
 *** R : The vertex                       ***
 *******************************************/
-CVertex* CGraph :: GRAGetVertexAtIndex(unsigned int uiParam) {
+CVertex* CGraph :: GRAGetVertexAtIndex(unsigned int uiParam) const {
 	return vGRAVertices[uiParam];
 }
 
