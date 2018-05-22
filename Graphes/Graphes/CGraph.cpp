@@ -10,8 +10,8 @@ CGraph :: CGraph(const CGraph &GRAParam) {
 	
 	const unsigned int uiVectorSize = GRAParam.GRAgetVerticesVectorSize();
 
-	for (unsigned int uiLoop = 0; uiLoop < uiVectorSize; uiLoop++) {
-		vGRAVertices.push_back(GRAParam.GRAGetVertexAtIndex(uiLoop));
+	for (unsigned int uiLoop = 0 ; uiLoop < uiVectorSize ; uiLoop++) {
+		vGRAVertices.push_back(new CVertex(*GRAParam.GRAGetVertexAtIndex(uiLoop)));
 	}
 }
 

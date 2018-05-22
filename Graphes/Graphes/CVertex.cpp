@@ -14,10 +14,20 @@ CVertex :: CVertex() {
 *** Copy constructor ***
 ***********************/
 //Different
-CVertex :: CVertex(CVertex &VERParam) {
+CVertex :: CVertex(const CVertex &VERParam) {
+
 	uiVERNumber = VERParam.VERgetVertexNumber();
-	vVERIncomingArcs = VERParam.vVERIncomingArcs;
-	vVEROutcomingArcs = VERParam.vVEROutcomingArcs;
+
+	unsigned int uiIncomingVectorSize = VERParam.VERgetIncomingVectorSize();
+	unsigned int uiOutcomingVectorSize = VERParam.VERgetOutcomingVectorSize();
+
+	for (unsigned int uiLoop = 0 ; uiLoop < uiIncomingVectorSize ; uiLoop++) {
+		vVERIncomingArcs.push_back(new CArc(VERParam.VERgetIncomingArcDestination(uiLoop)));
+	}
+
+	for (unsigned int uiLoop = 0; uiLoop < uiOutcomingVectorSize ; uiLoop++) {
+		vVEROutcomingArcs.push_back(new CArc(VERParam.VERgetOutcomingArcDestination(uiLoop)));
+	}
 }
 /**********************************************
 *** Constructor setting the vertex's number ***
@@ -49,7 +59,7 @@ CVertex :: ~CVertex() {
  *** Get the vertex's number ***
  *** R: the vertex's number  ***
  ******************************/
-unsigned int CVertex :: VERgetVertexNumber() {
+unsigned int CVertex :: VERgetVertexNumber() const {
 	return uiVERNumber;
 }
 
@@ -61,7 +71,7 @@ unsigned int CVertex :: VERgetVertexNumber() {
 *** Get the size of the incoming arcs vector ***
 *** R : the size of the vector               ***
 ***********************************************/
-unsigned int CVertex :: VERgetIncomingVectorSize() {
+unsigned int CVertex :: VERgetIncomingVectorSize() const {
 	return vVERIncomingArcs.size();
 }
 
@@ -69,7 +79,7 @@ unsigned int CVertex :: VERgetIncomingVectorSize() {
  *** Get the arc's destination value from the incoming vector at the position ***
  *** E : uiIndex the position                                                 ***
  *******************************************************************************/
-unsigned int CVertex :: VERgetIncomingArcDestination(unsigned int uiIndex) {
+unsigned int CVertex :: VERgetIncomingArcDestination(unsigned int uiIndex) const {
 	return vVERIncomingArcs[uiIndex]->ARCgetVertex();
 }
 
@@ -145,7 +155,7 @@ void CVertex::VERDeleteIncomingArc(unsigned int  uiLeaving)
 *** Get the size of the outcoming arcs vector ***
 *** R : the size of the vector                ***
 ************************************************/
-unsigned int CVertex :: VERgetOutcomingVectorSize() {
+unsigned int CVertex :: VERgetOutcomingVectorSize() const {
 	return vVEROutcomingArcs.size();
 }
 
@@ -153,7 +163,7 @@ unsigned int CVertex :: VERgetOutcomingVectorSize() {
 *** Get the arc's destination value from the incoming vector at the position ***
 *** E : uiIndex the position                                                 ***
 *******************************************************************************/
-unsigned int CVertex::VERgetOutcomingArcDestination(unsigned int uiIndex) {
+unsigned int CVertex::VERgetOutcomingArcDestination(unsigned int uiIndex) const {
 	return vVEROutcomingArcs[uiIndex]->ARCgetVertex();
 }
 

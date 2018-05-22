@@ -24,7 +24,6 @@
     <ClCompile Include="CFileReader.cpp" />
     <ClCompile Include="CGraph.cpp" />
     <ClCompile Include="CVertex.cpp" />
-    <ClCompile Include="Graphes.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
