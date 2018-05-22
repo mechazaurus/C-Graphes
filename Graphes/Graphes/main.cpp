@@ -29,11 +29,13 @@ int main(int argc, char * argv[]) {
 
 	for (int iLoop = 0 ; iLoop < argc - 1 ; iLoop++) {
 		GRAGraphs[iLoop].GRAdisplayGraph();
+		GRAGraphs[iLoop].GRAReverseGraph();
+		GRAGraphs[iLoop].GRAdisplayGraph();
 	}
-	/*
+	
 	for (int iLoop1 = 0 ; iLoop1 < argc - 1 ; iLoop1++) {
 		// Delete tous les sommets de tous les graphes
-	}*/
-/*
+	}
+
 	return 0;
-}*/
+}
