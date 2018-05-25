@@ -33,6 +33,6 @@ int main(int argc, char * argv[]) {
 		GRAGraphs[iLoop].GRAdisplayGraph();
 		cout << "==================================" << endl;
 	}
-	cout << "bonjour";
+	cout << "wesh";
 	return 0;
 }
