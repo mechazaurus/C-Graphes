@@ -107,8 +107,6 @@ public :
 	*** Display the graph ***
 	************************/
 	void GRAdisplayGraph();
-
-	// TODO METHODE POUR ENSEMBLE INDEPENDANT
 };
 
 #endif
