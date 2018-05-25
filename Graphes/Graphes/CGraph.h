@@ -64,7 +64,6 @@ public :
 	*******************************************/
 	void GRAdeleteVertex(CVertex *VERParam);
 
-
 	/*******************************************
 	*** Get vector of Vextex                 ***
 	*** R : The vector of Vertex             ***
@@ -108,6 +107,8 @@ public :
 	*** Display the graph ***
 	************************/
 	void GRAdisplayGraph();
+
+	// TODO METHODE POUR ENSEMBLE INDEPENDANT
 };
 
 #endif
