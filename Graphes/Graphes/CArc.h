@@ -13,20 +13,20 @@ private :
 	*** Set the value of the arc at 0 ***
 	*** Can't be used by users        ***
 	************************************/
-	CArc ();
+	CArc();
 
 public :
 
 	/***********************
 	*** Copy constructor ***
 	***********************/
-	CArc (CArc &ARCParam);
+	CArc(CArc &ARCParam);
 
 	/******************************************************
 	*** Constructor setting the arc's destination value ***
 	*** E : uiParam the value                           ***
 	******************************************************/
-	CArc (unsigned int uiParam);
+	CArc(unsigned int uiParam);
 
 	/*********************************
 	*** Destructor - Nothing to do ***

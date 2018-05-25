@@ -30,11 +30,11 @@ public :
 	***********************/
 	CGraph(const CGraph &GRAParam);
 
-	/**************************************************************
-	*** Constructors taking a CFileReader                       ***
-	*** It will construct the graph wit the file's informations ***
-	*** E : the file to use                                     ***
-	**************************************************************/
+	/***************************************************************
+	*** Constructors taking a CFileReader                        ***
+	*** It will construct the graph with the file's informations ***
+	*** E : the file to use                                      ***
+	***************************************************************/
 	CGraph(CFileReader FIRParam);
 
 	/****************************************************
@@ -69,13 +69,13 @@ public :
 	*** Get vector of Vextex                 ***
 	*** R : The vector of Vertex             ***
 	*******************************************/
-	vector<CVertex*> GRAGetVerticesVector();
+	vector<CVertex*> GRAgetVerticesVector();
 
 	/*******************************************
 	*** Get the vertex at the index position ***
 	*** R : The vertex                       ***
 	*******************************************/
-	CVertex* GRAGetVertexAtIndex(unsigned int uiParam) const;
+	CVertex* GRAgetVertexAtIndex(unsigned int uiParam) const;
 	
 	/*******************************************
 	*** Delete completely a Vertex           ***
@@ -83,23 +83,23 @@ public :
 	*******************************************/
 	void GRAFullyDeleteVertex(CVertex *VERParam);
 
-	/*******************************************
+	/**********************************************
 	*** Get Vertex with uiNumber number         ***
 	***  E : The vertex with uiNumber to return ***
-	*******************************************/
-	CVertex* GRAGetVertex(unsigned int uiNumber);
+	**********************************************/
+	CVertex* GRAgetVertex(unsigned int uiNumber);
 
 	/*******************************************
 	*** Get Vertex index				    ***
 	***  E : The vertex					    ***
 	*******************************************/
-	unsigned int GRAGetVertex(CVertex *VERParam);
+	unsigned int GRAgetVertex(CVertex *VERParam);
 
 	/*******************************************
 	*** Reverse all arcs 				    ***
 	***									    ***
 	*******************************************/
-	void GRAReverseGraph(void);
+	void GRAreverseGraph(void);
 
 
 	// Other methods

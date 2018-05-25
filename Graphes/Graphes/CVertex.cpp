@@ -109,7 +109,7 @@ void CVertex :: VERaddIncomingArc(CArc *ARCParam) {
 *** Delete an arc from the incoming arcs vector ***
 *** E : The arc to delete                       ***
 **************************************************/
-void CVertex :: VERDeleteIncomingArc(CArc *ARCParam) {
+void CVertex :: VERdeleteIncomingArc(CArc *ARCParam) {
 
 	unsigned int uiVertexSize = vVERIncomingArcs.size();
 
@@ -130,7 +130,7 @@ void CVertex :: VERDeleteIncomingArc(CArc *ARCParam) {
 *** Delete an arc from the incoming arcs vector with uiLeaving      ***
 *** E : The arc to delete										    ***
 *********************************************************************/
-void CVertex::VERDeleteIncomingArc(unsigned int  uiLeaving)
+void CVertex::VERdeleteIncomingArc(unsigned int  uiLeaving)
 {
 	unsigned int uiVertexSize = vVERIncomingArcs.size();
 	bool deleted = false;
@@ -192,7 +192,7 @@ void CVertex::VERaddOutcomingArc(CArc *ARCParam) {
 *** Delete an arc from the outcoming arcs vector ***
 *** E : The arc to delete                        ***
 ***************************************************/
-void CVertex::VERDeleteOutcomingArc(CArc *ARCParam) {
+void CVertex::VERdeleteOutcomingArc(CArc *ARCParam) {
 
 	unsigned int uiVertexSize = vVEROutcomingArcs.size();
 
@@ -213,7 +213,7 @@ void CVertex::VERDeleteOutcomingArc(CArc *ARCParam) {
 *** Delete an arc from the outcoming arcs vector ***
 *** E : The arc to delete with uIDestination     ***
 ***************************************************/
-void CVertex::VERDeleteOutcomingArc(unsigned int  uiDestination)
+void CVertex::VERdeleteOutcomingArc(unsigned int  uiDestination)
 {
 	unsigned int uiVertexSize = vVEROutcomingArcs.size();
 	bool deleted = false;
@@ -233,7 +233,7 @@ void CVertex::VERDeleteOutcomingArc(unsigned int  uiDestination)
 /**********************************************************************
 *** Return outcoming arcs											***
 *********************************************************************/
-void CVertex::VERSwapArcs(void)
+void CVertex::VERswapArcs(void)
 {
 	vector<CArc *> temp =  vVERIncomingArcs;
 	vVERIncomingArcs = vVEROutcomingArcs;

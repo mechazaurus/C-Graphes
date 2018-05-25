@@ -29,7 +29,7 @@ int main(int argc, char * argv[]) {
 		cout << endl << "Graphe " << iLoop + 1 << endl;
 		GRAGraphs[iLoop].GRAdisplayGraph();
 		cout << "Inversion des arcs..." << endl << endl;
-		GRAGraphs[iLoop].GRAReverseGraph();
+		GRAGraphs[iLoop].GRAreverseGraph();
 		GRAGraphs[iLoop].GRAdisplayGraph();
 		cout << "==================================" << endl;
 	}

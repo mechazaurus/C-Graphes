@@ -11,7 +11,7 @@ CGraph :: CGraph(const CGraph &GRAParam) {
 	const unsigned int uiVectorSize = GRAParam.GRAgetVerticesVectorSize();
 
 	for (unsigned int uiLoop = 0 ; uiLoop < uiVectorSize ; uiLoop++) {
-		vGRAVertices.push_back(new CVertex(*GRAParam.GRAGetVertexAtIndex(uiLoop)));
+		vGRAVertices.push_back(new CVertex(*GRAParam.GRAgetVertexAtIndex(uiLoop)));
 	}
 }
 
@@ -117,7 +117,7 @@ void CGraph :: GRAdeleteVertex(CVertex *VERParam) {
 *** Get vector of Vextex                 ***
 *** R : The vector of Vertex             ***
 *******************************************/
-vector<CVertex*> CGraph :: GRAGetVerticesVector() {
+vector<CVertex*> CGraph :: GRAgetVerticesVector() {
 	return vGRAVertices;
 }
 
@@ -125,7 +125,7 @@ vector<CVertex*> CGraph :: GRAGetVerticesVector() {
 *** Get the vertex at the index position ***
 *** R : The vertex                       ***
 *******************************************/
-CVertex* CGraph :: GRAGetVertexAtIndex(unsigned int uiParam) const {
+CVertex* CGraph :: GRAgetVertexAtIndex(unsigned int uiParam) const {
 	return vGRAVertices[uiParam];
 }
 
@@ -138,24 +138,24 @@ void CGraph::GRAFullyDeleteVertex(CVertex *VERParam)
 	for (unsigned int uiLoop = 0; uiLoop < VERParam->VERgetIncomingVectorSize(); uiLoop++)
 	{
 		unsigned int uiVertexPointing = VERParam->VERgetIncomingArcDestination(uiLoop);
-		GRAGetVertex(uiVertexPointing)->VERDeleteOutcomingArc(VERParam->VERgetVertexNumber());
+		GRAgetVertex(uiVertexPointing)->VERdeleteOutcomingArc(VERParam->VERgetVertexNumber());
 	}
 
 	for (unsigned int uiLoop = 0; uiLoop < VERParam->VERgetOutcomingVectorSize(); uiLoop++)
 	{
 		unsigned int uiVertexPointing = VERParam->VERgetOutcomingArcDestination(uiLoop);
-		GRAGetVertex(uiVertexPointing)->VERDeleteIncomingArc(VERParam->VERgetVertexNumber());
+		GRAgetVertex(uiVertexPointing)->VERdeleteIncomingArc(VERParam->VERgetVertexNumber());
 	}
-	unsigned int uiPosition = GRAGetVertex(VERParam);
+	unsigned int uiPosition = GRAgetVertex(VERParam);
 	delete(VERParam);
 	vGRAVertices.erase(vGRAVertices.begin() + uiPosition);
 }
 
-/*******************************************
+/**********************************************
 *** Get vextex with uiNumber                ***
 ***  E : The vertex with uiNumber to return ***
-*******************************************/
-CVertex* CGraph::GRAGetVertex(unsigned int uiNumber)
+**********************************************/
+CVertex* CGraph::GRAgetVertex(unsigned int uiNumber)
 {
 	for (unsigned int uiLoop = 0; uiLoop < vGRAVertices.size(); uiLoop++)
 	{
@@ -171,7 +171,7 @@ CVertex* CGraph::GRAGetVertex(unsigned int uiNumber)
 *** Get Vertex index				    ***
 ***  E : The vertex					    ***
 *******************************************/
-unsigned int CGraph::GRAGetVertex(CVertex *VERParam)
+unsigned int CGraph::GRAgetVertex(CVertex *VERParam)
 {
 	for (unsigned int uiLoop = 0; uiLoop < vGRAVertices.size(); uiLoop++)
 	{
@@ -188,11 +188,11 @@ unsigned int CGraph::GRAGetVertex(CVertex *VERParam)
 *** Reverse all arcs 				    ***
 ***									    ***
 *******************************************/
-void CGraph::GRAReverseGraph(void)
+void CGraph::GRAreverseGraph(void)
 {
 	for (int uiLoop = 0; uiLoop < vGRAVertices.size(); uiLoop++)
 	{
-		vGRAVertices[uiLoop]->VERSwapArcs();
+		vGRAVertices[uiLoop]->VERswapArcs();
 	}
 }
 
